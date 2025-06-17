@@ -1,2 +1,6 @@
 history -c
 history -w
+
+rm -rf avalone
+
+rm -rf avalone/.git
