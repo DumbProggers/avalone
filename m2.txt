@@ -1,0 +1,19 @@
+dotnet new install Avalonia.Templates
+
+dotnet new avalonia.mvvm -o DemoApp
+cd DemoApp
+
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 9.0.3
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 9.0.3
+dotnet add package FirebirdSql.EntityFrameworkCore.Firebird --version 12.0.0
+dotnet add package Avalonia.ReactiveUI --version 11.2.6
+
+dotnet new tool-manifest
+dotnet tool install dotnet-ef --version 9.0.3
+
+
+//ГЕНЕРАЦИЯ КЛАССОВ//
+
+dotnet tool restore
+
+dotnet tool run dotnet-ef dbcontext scaffold "DataSource=localhost;Port=3050;Database=/db/demo.fdb;Username=sysdba;Password=student" FirebirdSql.EntityFrameworkCore.Firebird -o Entities -f
